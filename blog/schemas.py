@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 
 class Blog(BaseModel):
-    """レコード更新時に使うスキーマ"""
+    """ブログ登録・更新のスキーマ"""
 
     title: str
     body: str
@@ -13,3 +13,11 @@ class Blog(BaseModel):
 
 class ShowBlog(Blog):
     """戻り値用のスキーマ"""
+
+
+class User(BaseModel):
+    """ユーザ登録・更新のスキーマ"""
+
+    name: str
+    email: str
+    password: str

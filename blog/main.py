@@ -70,3 +70,12 @@ def update(id: int, request: schemas.Blog, db: Session = Depends(get_db)):
     blog.update(request.dict())
     db.commit()
     return "Update completed."
+
+
+@app.post("/user")
+def create_user(request: schemas.User, db: Session = Depends(get_db)):
+    new_user = models.User(**request.dict())
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
+    return request
