@@ -1,3 +1,4 @@
+from typing import List
 from fastapi import FastAPI, Depends, status, HTTPException
 from sqlalchemy.orm import Session
 
@@ -28,13 +29,13 @@ def create(blog: schemas.Blog, db: Session = Depends(get_db)):
     return new_blog
 
 
-@app.get("/blog")
+@app.get("/blog", response_model=List[schemas.ShowBlog])
 def search(db: Session = Depends(get_db)):
     blogs = db.query(models.Blog).all()
     return blogs
 
 
-@app.get("/blog/{id}")
+@app.get("/blog/{id}", response_model=schemas.ShowBlog)
 def get(id: int, db: Session = Depends(get_db)):
     blog = db.query(models.Blog).filter(models.Blog.id == id).first()
     if not blog:
