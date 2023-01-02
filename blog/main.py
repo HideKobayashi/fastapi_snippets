@@ -6,6 +6,7 @@ from passlib.context import CryptContext
 from .database import engine, session_local
 from . import models
 from . import schemas
+from .hashing import Hash
 
 
 app = FastAPI()
@@ -77,9 +78,8 @@ def update(id: int, request: schemas.Blog, db: Session = Depends(get_db)):
 
 @app.post("/user")
 def create_user(request: schemas.User, db: Session = Depends(get_db)):
-    hashed_password = pwd_context.hash(request.password)
     params = request.dict().copy()
-    params.update({"password": hashed_password})
+    params.update({"password": Hash.bcrypt(request.password)})
     new_user = models.User(**params)
     db.add(new_user)
     db.commit()
