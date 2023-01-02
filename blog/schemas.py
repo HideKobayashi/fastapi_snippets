@@ -12,7 +12,7 @@ class Blog(BaseModel):
 
 
 class ShowBlog(Blog):
-    """戻り値用のスキーマ"""
+    """ブログ取得のスキーマ"""
 
 
 class User(BaseModel):
@@ -21,3 +21,16 @@ class User(BaseModel):
     name: str
     email: str
     password: str
+
+    class Config:
+        orm_mode = True
+
+
+class ShowUser(BaseModel):
+    """ユーザ取得のスキーマ"""
+
+    name: str
+    email: str
+
+    class Config:
+        orm_mode = True
