@@ -27,7 +27,15 @@ npm-run-build:
 # https://qiita.com/kuro_sabo10/items/cc497f26c1b8456f0296
 npm-install-vuetify:
 	cd ${vue-app-name}; npm install vuetify@next; cd ..
+
+
+# Vitest 単体テストを実行する
+npx-vitest-run:
+	cd ${vue-app-name}; npx vitest run; cd ..
 	
+# Vitest 単体テストを継続して実行する
+npx-vitest-watch:
+	cd ${vue-app-name}; npx vitest watch; cd ..
 
 
 
