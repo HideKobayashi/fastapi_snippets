@@ -14,6 +14,10 @@ defineProps<{
       What's next?
     </h3>
   </div>
+  <div class="about">
+    <v-btn elevation="2">test</v-btn>
+  </div>
+
 </template>
 
 <style scoped>
@@ -33,6 +37,7 @@ h3 {
 }
 
 @media (min-width: 1024px) {
+
   .greetings h1,
   .greetings h3 {
     text-align: left;
