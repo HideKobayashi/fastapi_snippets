@@ -1,5 +1,7 @@
 from typing import List
 from fastapi import FastAPI, Depends, status, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+
 from sqlalchemy.orm import Session
 from passlib.context import CryptContext
 
@@ -14,6 +16,19 @@ app = FastAPI()
 models.Base.metadata.create_all(engine)
 
 pwd_context = CryptContext(schemes=["bcrypt"])
+
+
+origins = [
+    "http://127.0.0.1:5173",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 def get_db():
